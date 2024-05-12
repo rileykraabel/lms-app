@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+/* -- phase 2; typography -- */
+html { 
+    font-family: "IBM Plex Sans", 'Times New Roman', Times, serif;
+    line-height: 1.25;
+
+    /* (phrase 3: "remove any margins/padding on html element") */
+    margin: 0;
+    padding: 0;
+}
+
+output {
+    color: red;
+}
+
+code {
+    font-family: "IBM Plex Mono", 'Times New Roman', Times, serif;
+}
+
+table {
+    line-height: 1.5;
+
+    /* (phase 3: "1rem before and after tables") */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    /* (phase 4: "all tables should span the whole width of the main content") */
+    width: 100%;
+}
+
+#submissions-form * {
+    line-height: 1.5;
+
+    /* (phase 3: "1rem before and after tables") */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    /* (phase 4: "all tables should span the whole width of the main content") */
+    width: 100%;
+}
+
+#nav-banner {
+    font-size: 125%; 
+
+    /* (phase 3: "nav banner has gray background, gray shadow, padding & 3rem between banner & title") */
+    background-color: #ddd;
+    box-shadow: 0 0 5px gray;
+    padding: 12px;
+    margin-bottom: 3rem;
+
+    /* (phase 5: "nav banner should have profile link on R, others on L") */
+    display: flex;
+    justify-content: left;
+}
+
+#nav-banner > a {
+    color: #444;
+
+    font-weight: normal;
+    text-decoration: none;
+
+    /* (phase 5: "there shuold always be a gap of 1rem between any two links") */
+    margin-right: 1rem;
+}
+
+hgroup > h1 {
+    font-size: 150%;
+
+    /* (phase 3: "1rem after page title, add gray line below title) */
+    border-bottom: 1px solid #ddd;
+    margin: 0rem;
+}
+
+hgroup > p {
+    font-size: 100%;
+    font-weight: normal;
+
+    /* get rid of any whitespace before/after the horizontal line from phase3 */
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+}
+
+#description {
+    font-size: 100%;
+
+    /* (phase 3: "1rem before/after description heading") */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#login-form * {
+    font-size: 125%;
+
+    /* (phase 4: spacing, alignment, sizing of the login-form) */
+    margin-bottom: 1rem;
+}
+
+/* -- phase 3; borders, backgrounds, and whitespace -- */
+main {
+    margin: 0 auto;
+    padding: 0;
+
+    /* phase 5 - content should never exceed 50rem */
+    max-width: 50rem;
+}
+
+#nav-banner > span {
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+div.action { /* "action cards" */
+    background-color: #b1c3de;
+    padding: 10px;
+    border: 2px solid #204a87;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+main > li {
+    margin-bottom: 1rem;
+}
+
+main > p {
+    margin-bottom: 1rem;
+}
+
+main > figure {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+main > hgroup {
+    display: flex;
+    flex-direction: column;
+}
+
+/* -- phase 4; styling links, forms, and tables --  */
+#nav-banner > a:hover {
+    text-decoration: underline;
+}
+
+#nav-banner > a:active {
+    color: black;
+}
+
+.numbers { /* all table headers/items that contain numbers */
+    text-align: right;
+}
+
+th.sortable {
+    text-align: right;
+    cursor: pointer;
+}
+
+#final-grade {
+    font-weight: bold;
+}
+
+th.sort-asc::after { content: " \25b2;" }
+th.sort-desc::after { content: " \25bc;" }
+
+#due-date {
+    text-align: left;
+}
+
+th { /* align all other header text to the left */
+    text-align: left;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row { /* separate each row 1rem from each other */
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row > input { /* input boxes should be right-aligned */
+    width: 50%;
+    float: right;
+}
+
+#login-form button {
+    width: 50%;
+    margin: auto; /* centers the login button */
+}
+
+#sub-form > button { /* gap of 1rem between 'submit' and 'back to assignment' */
+    margin-right: 1rem;
+}
+
+/* -- phase 5: layout -- */
+#nav-banner > #right-item {
+    margin-left: auto;
+}

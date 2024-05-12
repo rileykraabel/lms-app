@@ -1,0 +1,12 @@
+{% load static %}
+<!doctype html>
+<title>{{assignment.title}}</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" type="image/png" href="{% static 'logo.png' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"/>
+
+<header id="nav-banner">
+	<span>CS3550</span>
+	<a href="/">Assignments</a>
+	<a href="{% url 'profile' %}" id="right-item">Profile</a>
+</header>

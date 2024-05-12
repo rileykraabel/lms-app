@@ -1,0 +1,31 @@
+{% include "header.html" %}
+<script type="module">
+	import { make_table_sortable } from "/static/main.js";
+	let $tableElement = $("#sortableTable");
+	make_table_sortable($tableElement);
+</script>
+
+<main>
+	<hgroup>
+		<h1>All Assignments</h1>
+	</hgroup>
+
+	<table id="sortableTable">
+		<thead>
+			<tr>
+				<th>Assignment</th>
+				<th class="sortable" id="due-date">Due Date</th>
+				<th class="sortable">Weight</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for assignment in assignments %}
+			<tr data-index="{{ forloop.counter }}">
+				<td><a href="{% url 'assignment_id' assignment.id %}">{{ assignment.title }}</a> </td>
+				<td data-value="{{ assignment.deadline|date:'U' }}">{{ assignment.deadline|date:"M d" }}</td>
+				<td class="numbers" data-value="{{ assignment.weight }}">{{ assignment.weight }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</main>

@@ -1,0 +1,53 @@
+{% include "header.html" %}
+<script type="module">
+	import { make_form_async } from "/static/main.js";
+	let $form = $("#assignment-submission");
+	make_form_async($form);
+</script>
+
+<main>
+	<hgroup>
+		<h1>{{assignment.title}}</h1>
+		<p id="subtitle">Due {{assignment.deadline|date:"F d"}}, total of {{assignment.points}} point{{assignment.points|pluralize}}</p>
+	</hgroup>
+
+	{% if is_staff %}
+	<div class="action">
+		<p>Currently {{total_submissions}}/{{total_students}} submissions</p>
+		<p>{{ta_assignments}} submission{{ta_assignments|pluralize}} assigned to you <a href="{% url 'submissions' assignment.id %}"
+			 title="Enter student grades here">Grade</a></p>
+		</div>
+	{% else %}
+		{% if submission %}
+			{% if submission.is_graded %}
+        		<p>Your submission, <a href="{{ submission.file.url }}" target="_blank">{{ submission.file.name }}</a>, 
+					received {{ submission.score }}/{{ assignment.points }} points ({{ submission.score|floatformat:2 }}%).</p>
+    		{% elif submission.is_graded == False and submission.is_past_due %}
+    			<p>Your submission, <a href="{{ submission.file.name }}" target="_blank">{{ submission.file.name }}</a> is being graded.</p>
+			{% elif submission.is_graded == False and assignment.is_due == False %}
+    			<p>Your current submission is <a href="{{ submission.file.name }}" target="_blank">{{ submission.file.name }}</a>.</p>
+				<form method="post" action="{% url 'submit' assignment.id %}" enctype="multipart/form-data" id="assignment-submission">
+					{% csrf_token %}
+					<label for="file">Choose File:</label>
+					<input type="file" name="file" id="file" required>
+					<button type="submit">Update Assignment</button>
+				</form>
+			{% endif %}
+		{% else %}
+			{% if assignment.is_due %}
+        		<p>You did not submit this assignment and received 0 points.</p>
+    		{% elif assignment.is_due == False %}
+    			<p>No current submission.</p>
+				<form method="post" action="{% url 'submit' assignment.id %}" enctype="multipart/form-data" id="assignment-submission">
+					{% csrf_token %}
+					<label for="file">Choose File:</label>
+					<input type="file" name="file" id="file" required>
+					<button type="submit">Submit Assignment</button>
+				</form>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+
+	<h2 id="description">Description</h3>
+	<p>{{assignment.description|safe}}</p>
+</main>

@@ -1,0 +1,30 @@
+{% include "header.html" %}
+<main>
+	<hgroup>
+		<h1>{{assignment.title}}</h1>
+		<p id="subtitle">All grades out of {{assignment.weight}}</p>
+	</hgroup>
+
+	<table>
+		<tr>
+			<th>Student</th>
+			<th>Submission</th>
+			<th>Grade</th>
+		</tr>
+		{% for submission in submissions %}
+		<tr>
+			<td>{{submission.author.username}}</td>
+			<td><a href="{{ submission.file.url }}" target="_blank">{{ submission.file.name }}</a></td>
+			<form method="post" id="submissions-form" action="{% url 'grade' assignment.id %}">
+				{% csrf_token %}
+				<td><input type="number" name="grade-{{ submission.id }}" value="{{ submission.score }}"></td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	<div id="sub-form">
+		<button type="submit">Submit</button>
+		<a href="{% url 'assignment_id' assignment.id %}">Back to assignment</a>
+	</div>
+	</form>
+</main>

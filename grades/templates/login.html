@@ -1,0 +1,25 @@
+{% include "header.html" %}
+<main>
+	<hgroup>
+		<h1>Log in</h1>
+	</hgroup>
+
+	<form method="post" action="{% url 'login' %}?next={{ request.GET.next }}" id="login-form">
+		<input type="hidden" name="next" value="{{ next_page }}">
+		{% csrf_token %}
+		{% if error_message %}
+		<output>{{ error_message }}</output>
+		{% endif %}
+		<div class="form-row">
+			<label for="username">Username: </label>
+			<input type="text" id="username" name="username" autofocus><br>
+		</div>
+
+		<div class="form-row">
+			<label for="password">Password: </label>
+			<input type="password" id="password" name="password"><br>
+		</div>
+
+		<button type="submit">Log In</button>
+	</form>
+</main>
